@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 开启注解扫描 -->
+    <context:component-scan base-package="org.ioc"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config.properties"/>
+
+    <bean id="student" class="org.ioc.bean.Student" >
+        <property name="id" value="10001"/>
+    </bean>
+
+    <!-- 定义。id为spring中的唯一  class 指向的类，创建对象 -->
+    <bean id="studentService" class="org.ioc.service.impl.StudentServiceImpl"/>
+
+    <bean id="studentService2" class="org.ioc.service.StudentServiceStaticFactory" factory-method="getStudentService"/>
+
+    <bean id="factory" class="org.ioc.service.InstanceFactory" />
+
+    <bean id="studentService3" factory-bean="factory" factory-method="getInstance"/>
+
+
+    <bean id="constructor" class="org.ioc.bean.ConstructorBean">
+        <constructor-arg name="id" value="100"/>
+        <constructor-arg name="name" value="zhangsan"/>
+    </bean>
+
+
+    <bean id="listbean" class="org.ioc.bean.ListBean">
+        <property name="list">
+            <list>
+                <value>阿松大</value>
+                <value>阿松</value>
+                <value>阿松</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="a" value="A"/>
+                <entry key="b" value="B"/>
+                <entry key="c" value="C"/>
+                <entry key="d" value="D"/>
+            </map>
+        </property>
+    </bean>
+</beans>
