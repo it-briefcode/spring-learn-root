@@ -26,7 +26,12 @@ public class AnnotationTest {
     public void properties(){
         StudentService bean = context.getBean(StudentService.class);
         bean.queryAll();
-        System.out.println(((StudentServiceImpl) bean).getTag());
+    }
+
+    @Test
+    public void point(){
+        StudentServiceImpl bean = context.getBean(StudentServiceImpl.class);
+        bean.queryAll();
     }
 
 }

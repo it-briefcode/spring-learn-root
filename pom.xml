@@ -12,6 +12,7 @@
         <module>spring-framework-lab-1</module>
         <module>my-spring-framework-1</module>
         <module>spring-framework-lab-1-web</module>
+        <module>spring-framework-lab-2</module>
     </modules>
 
 </project>
