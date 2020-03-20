@@ -1,5 +1,8 @@
 package com.mvc.controller;
 
+import com.mvc.entity.Dept;
+import com.mvc.service.DeptService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,6 +19,9 @@ import java.util.Map;
 
 @Controller  //声明Bean对象，为一个控制器组件
 public class HelloWorldController {
+
+    @Autowired
+    private DeptService deptService;
     /**
      * 映射请求的名称：用于客户端请求；类似Struts2中action映射配置的action名称
      * 1. 使用 @RequestMapping 注解来映射请求的 URL
@@ -24,9 +30,11 @@ public class HelloWorldController {
      *          通过 prefix + returnVal + suffix 这样的方式得到实际的物理视图, 然后做转发操作.
      *          /WEB-INF/views/success.jsp
      */
-    @RequestMapping(value = "/helloworld", method = RequestMethod.POST)
+    @RequestMapping(value = "/hello", method = RequestMethod.POST)
     public String helloworld() {
         System.out.println("hello,world");
+        Dept dept = deptService.queryById(10);
+        System.out.println(dept);
         //结果如何跳转呢？需要配置映射解析器
         return "success";
     }

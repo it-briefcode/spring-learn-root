@@ -8,7 +8,7 @@ import com.myspring.test.service.HelloService;
 @Controller
 public class HelloController {
 
-    @Autowired("service")
+    @Autowired("com.mvc.service")
     private HelloService helloService;
 
     @RequestMapping("/hello")

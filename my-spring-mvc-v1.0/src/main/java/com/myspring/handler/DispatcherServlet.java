@@ -75,6 +75,7 @@ public class DispatcherServlet extends HttpServlet {
      * 动态初始化类中的参数
      */
     private void doAutowired() {
+
         //遍历ioc容器中的类
         for (Object value : ioc.values()) {
             //获取里面所有的成员变量

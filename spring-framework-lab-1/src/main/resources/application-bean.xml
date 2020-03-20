@@ -18,11 +18,11 @@
     </bean>
 
     <!-- 定义。id为spring中的唯一  class 指向的类，创建对象 -->
-    <bean id="studentService" class="org.ioc.service.impl.StudentServiceImpl"/>
+    <bean id="studentService" class="org.ioc.com.mvc.service.impl.StudentServiceImpl"/>
 
-    <bean id="studentService2" class="org.ioc.service.StudentServiceStaticFactory" factory-method="getStudentService"/>
+    <bean id="studentService2" class="org.ioc.com.mvc.service.StudentServiceStaticFactory" factory-method="getStudentService"/>
 
-    <bean id="factory" class="org.ioc.service.InstanceFactory" />
+    <bean id="factory" class="org.ioc.com.mvc.service.InstanceFactory" />
 
     <bean id="studentService3" factory-bean="factory" factory-method="getInstance"/>
 
