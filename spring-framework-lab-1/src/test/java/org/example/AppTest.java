@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+
 /**
  * Unit test for simple App.
  */
@@ -22,5 +24,9 @@ public class AppTest
         String reg = "(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){3,7}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){3,7})\\d";
         System.out.println(str.matches(reg));
         System.out.println(System.currentTimeMillis()-l);
+    }
+
+    public void test(){
+        Calendar calendar = Calendar.getInstance();
     }
 }

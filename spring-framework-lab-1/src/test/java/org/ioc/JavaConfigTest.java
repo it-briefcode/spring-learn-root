@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.sql.DataSource;
+
 /**
  * @ClassName: JavaConfigTest
  * @Author: zhoucx
@@ -25,7 +27,9 @@ public class JavaConfigTest {
 
     @Test
     public void getStudent(){
-        Student bean = context.getBean(Student.class);
-        System.out.println(bean);
+        //Student bean = context.getBean(Student.class);
+        //System.out.println(bean);
+        DataSource bean1 = context.getBean(DataSource.class);
+        System.out.println(bean1);
     }
 }
