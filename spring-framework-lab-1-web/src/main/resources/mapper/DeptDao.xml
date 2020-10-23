@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mvc.com.mvc.dao.DeptDao">
+
+    <resultMap type="com.mvc.com.mvc.entity.Dept" id="DeptMap">
+        <result property="deptno" column="DEPTNO" jdbcType="INTEGER"/>
+        <result property="dname" column="DNAME" jdbcType="VARCHAR"/>
+        <result property="loc" column="LOC" jdbcType="VARCHAR"/>
+        <result property="flag" column="flag" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="DeptMap">
+        select
+          DEPTNO, DNAME, LOC, flag, type
+        from db.dept
+        where DEPTNO = #{deptno}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="DeptMap">
+        select
+          DEPTNO, DNAME, LOC, flag, type
+        from db.dept
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="DeptMap">
+        select
+          DEPTNO, DNAME, LOC, flag, type
+        from db.dept
+        <where>
+            <if test="deptno != null">
+                and DEPTNO = #{deptno}
+            </if>
+            <if test="dname != null and dname != ''">
+                and DNAME = #{dname}
+            </if>
+            <if test="loc != null and loc != ''">
+                and LOC = #{loc}
+            </if>
+            <if test="flag != null">
+                and flag = #{flag}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="deptno" useGeneratedKeys="true">
+        insert into db.dept(DNAME, LOC, flag, type)
+        values (#{dname}, #{loc}, #{flag}, #{type})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update db.dept
+        <set>
+            <if test="dname != null and dname != ''">
+                DNAME = #{dname},
+            </if>
+            <if test="loc != null and loc != ''">
+                LOC = #{loc},
+            </if>
+            <if test="flag != null">
+                flag = #{flag},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+        </set>
+        where DEPTNO = #{deptno}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from db.dept where DEPTNO = #{deptno}
+    </delete>
+
+</mapper>
